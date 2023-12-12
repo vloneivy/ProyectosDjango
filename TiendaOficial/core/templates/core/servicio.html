@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <h1 style="text-align: center !important;">
-            Mantenedor de Juegos
+            Mantenedor de Servicios
         </h1>
         {% if form %}
         <form method="POST" action="" enctype="multipart/form-data" id="formulario">
@@ -25,9 +25,9 @@
             </div>
             <input type="submit" class="btn btn-primary btnwidth" id="id_guardar" value="Guardar">
             <!-- <input type="reset" class="btn btn-primary btnwidth" id="id_nuevo" value="Nuevo"> -->
-            <a class="btn btn-success btnwidth" href="{% url 'juego' 'ins' -1 %}">Nuevo</a>
+            <a class="btn btn-success btnwidth" href="{% url 'servicio' 'ins' -1 %}">Nuevo</a>
             {% if id != '-1' %}
-            <a class="btn btn-danger btnwidth" href="{% url 'juego' 'del' id %}">Eliminar</a>
+            <a class="btn btn-danger btnwidth" href="{% url 'servicio' 'del' id %}">Eliminar</a>
             {% endif %}
             <a class="btn btn-info btnwidth" href="{% url 'home' %}">Inicio</a>
             {% if mesg %}
@@ -41,7 +41,7 @@
                 <tr>
                     <th>Codigo</th>
                     <th>Nombre</th>
-                    <th>Plataforma</th>
+                    <th>Servicios</th>
                     <th>Imagen</th>
                     <th>Categoría</th>
                     <th class="titulo_boton">Editar</th>
@@ -53,12 +53,12 @@
                 <tr>
                     <td>{{ ve.codigo }}</td>
                     <td>{{ ve.nombre }}</td>
-                    <td>{{ ve.plataforma }}</td>
+                    <td>{{ ve.servicios }}</td>
                     <td><img src="/media/{{ ve.imagen }}" class="mini_auto" alt=""></td>
                     <td>{{ ve.categoria }}</td>
-                    <td><a href="{% url 'juego' 'upd' ve.codigo %}" 
+                    <td><a href="{% url 'servicio' 'upd' ve.codigo %}" 
                         class="btn btn-primary btn-sm boton_chico">Editar</a></td>
-                    <td><a href="{% url 'juego' 'del' ve.codigo %}" 
+                    <td><a href="{% url 'servicio' 'del' ve.codigo %}" 
                         class="btn btn-danger btn-sm boton_chico">Eliminar</a></td>
                 </tr>
                 {% endfor %}

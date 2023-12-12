@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu tienda de videojuegos</title>
+    <title>Tu tienda ServiExpress</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
@@ -41,7 +41,7 @@
 
         
     body {
-        background-image: url('static/core/img/fondoinicio.webp');
+        background-image: url('static/core/img/fondoprincipal.webp');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -81,21 +81,21 @@
 <body>
     
     <div class="container text-center">
-        <<div class="container text-center">
+        <div class="container text-center">
             <div>
                 <h1 style="font-weight: bold; color: linear-gradient(135deg, blue, purple); border: 5px solid black; border-radius: 10px; padding: 10px; background-color: turquoise;">
-                    Tienda VideoGames
+                    ServiExpress
                 </h1>
             </div>
        
             <div style="margin-top: 30px;">
-                <img class="moving-image" src="static/core/img/logo.png" width="500px" alt="">
+                <img class="moving-image" src="static/core/img/logo.jpg" width="500px" alt="">
             </div>
             <div style="margin-top: 30px;">
-                <a class="btn btn-custom" href="{% url 'juego' 'ins' -1 %}">Mantenedor de tienda</a>
+                <a class="btn btn-custom" href="{% url 'servicio' 'ins' -1 %}">Mantenedor de tienda</a>
             </div>
             <div style="margin-top: 30px;">
-                <a class="btn btn-custom" href="{% url 'juego_tienda' %}">Ingresar a tienda</a>
+                <a class="btn btn-custom" href="{% url 'servicio_tienda' %}">Ingresar a tienda</a>
             </div>
             
 </body>

@@ -1,63 +1,63 @@
 from django.shortcuts import redirect, render
-from .models import Juego, Categoria
-from .forms import JuegoForm
+from .models import servicio, Categoria
+from .forms import servicioForm
 
 # Create your views here.
 
 def home(request):
     return render(request, "core/home.html")
 
-def juego_tienda(request):
-    data = {"list": Juego.objects.all().order_by('codigo')}
-    return render(request, "core/juego_tienda.html", data)
+def servicio_tienda(request):
+    data = {"list": servicio.objects.all().order_by('codigo')}
+    return render(request, "core/servicio_tienda.html", data)
 
-def juego_ficha(request, id):
-    juego = Juego.objects.get(codigo=id)
-    data = {"juego":  juego}
-    return render(request, "core/juego_ficha.html", data)
+def servicio_ficha(request, id):
+    servicio = servicio.objects.get(codigo=id)
+    data = {"servicio":  servicio}
+    return render(request, "core/servicio_ficha.html", data)
 
-def juego(request, action, id):
-    data = {"mesg": "", "form": JuegoForm, "action": action, "id": id}
+def servicio(request, action, id):
+    data = {"mesg": "", "form": servicioForm, "action": action, "id": id}
 
     if action == 'ins':
         if request.method == "POST":
-            form = JuegoForm(request.POST, request.FILES)
+            form = servicioForm(request.POST, request.FILES)
             if form.is_valid:
                 try:
                     form.save()
-                    data["mesg"] = "¡El juego fue creado correctamente!"
+                    data["mesg"] = "¡El servicio fue creado correctamente!"
                 except:
-                    data["mesg"] = "¡No se puede crear dos juego el mismo codigo!"
+                    data["mesg"] = "¡No se puede crear dos servicios con el mismo codigo!"
 
     elif action == 'upd':
-        objeto = Juego.objects.get(codigo=id)
+        objeto = servicio.objects.get(codigo=id)
         if request.method == "POST":
-            form = JuegoForm(data=request.POST, files=request.FILES, instance=objeto)
+            form = servicioForm(data=request.POST, files=request.FILES, instance=objeto)
             if form.is_valid:
                 form.save()
-                data["mesg"] = "¡El juego fue actualizado correctamente!"
-        data["form"] = JuegoForm(instance=objeto)
+                data["mesg"] = "¡El servicio fue actualizado correctamente!"
+        data["form"] = servicioForm(instance=objeto)
 
     elif action == 'del':
         try:
-            Juego.objects.get(codigo=id).delete()
-            data["mesg"] = "¡El juego fue eliminado correctamente!"
-            return redirect(juego, action='ins', id = '-1')
+            servicio.objects.get(codigo=id).delete()
+            data["mesg"] = "¡El servicio fue eliminado correctamente!"
+            return redirect(servicio, action='ins', id = '-1')
         except:
-            data["mesg"] = "¡El juego ya estaba eliminado!"
+            data["mesg"] = "¡El servicio ya estaba eliminado!"
 
-    data["list"] = Juego.objects.all().order_by('codigo')
-    return render(request, "core/juego.html", data)
+    data["list"] = servicio.objects.all().order_by('codigo')
+    return render(request, "core/servicio.html", data)
 def poblar_bd(request):
-    Juego.objects.all().delete()
-    Juego.objects.create(codigo="jg-01", nombre='Diablo', plataforma="Playstation,Xbox", imagen="images/diablo.jpg", categoria=Categoria.objects.get(idCategoria=2))
-    Juego.objects.create(codigo="jg-02", nombre='Fifa23', plataforma="SNintendo,PS,Xbox", imagen="images/fifa23.jpg", categoria=Categoria.objects.get(idCategoria=2))
-    Juego.objects.create(codigo="jg-03", nombre='Gta', plataforma="Playstation,Xbox", imagen="images/gta.jpg", categoria=Categoria.objects.get(idCategoria=2))
-    Juego.objects.create(codigo="jg-04", nombre='Halo', plataforma="Xbox", imagen="images/halo.jpg", categoria=Categoria.objects.get(idCategoria=2))
-    Juego.objects.create(codigo="jg-05", nombre='Hogwarts', plataforma="Playstation", imagen="images/hogwarts.jpg", categoria=Categoria.objects.get(idCategoria=3))
-    Juego.objects.create(codigo="jg-06", nombre='Mario', plataforma="Nintendo Switch", imagen="images/mario.jpg", categoria=Categoria.objects.get(idCategoria=3))
-    Juego.objects.create(codigo="jg-07", nombre='Minecraft', plataforma="Nintendo,PS,Xbox", imagen="images/minecraft.jpg", categoria=Categoria.objects.get(idCategoria=3))
-    Juego.objects.create(codigo="jg-08", nombre='Mortalkombat', plataforma="Playstation,Xbox", imagen="images/mortalkomat.jpg", categoria=Categoria.objects.get(idCategoria=1))
-    Juego.objects.create(codigo="jg-09", nombre='Spiderman', plataforma="PlayStation", imagen="images/spiderman.jpg", categoria=Categoria.objects.get(idCategoria=1))
-    Juego.objects.create(codigo="jg-10", nombre='Zelda', plataforma="Nintendo Switch", imagen="images/zelda.jpg", categoria=Categoria.objects.get(idCategoria=3))
-    return redirect(Juego, action='ins', id = '-1')
+    servicio.objects.all().delete()
+    servicio.objects.create(codigo="jg-01", nombre='Motor', servicios="Servicio,Instalado", imagen="images/motor1.webp", categoria=Categoria.objects.get(idCategoria=2))
+    servicio.objects.create(codigo="jg-02", nombre='Neumaticos', servicios="Compra", imagen="images/neumaticos2.jpg", categoria=Categoria.objects.get(idCategoria=2))
+    servicio.objects.create(codigo="jg-03", nombre='Frenos', servicios="Servicio,Instalado", imagen="images/frenos3.jpg", categoria=Categoria.objects.get(idCategoria=2))
+    servicio.objects.create(codigo="jg-04", nombre='Caja de cambios', servicios="Servicio,Instalado", imagen="images/cajacambio4.jpg", categoria=Categoria.objects.get(idCategoria=2))
+    servicio.objects.create(codigo="jg-05", nombre='Bujias', servicios="Compra", imagen="images/bujias5.webp", categoria=Categoria.objects.get(idCategoria=3))
+    servicio.objects.create(codigo="jg-06", nombre='Amortiguador', servicios="Compra", imagen="images/amortiguador6.jpg", categoria=Categoria.objects.get(idCategoria=3))
+    servicio.objects.create(codigo="jg-07", nombre='Llanta', servicios="Compra", imagen="images/llanta7.webp", categoria=Categoria.objects.get(idCategoria=3))
+    servicio.objects.create(codigo="jg-08", nombre='Volante', servicios="Servicio,Instalado", imagen="images/volante.webp", categoria=Categoria.objects.get(idCategoria=1))
+    servicio.objects.create(codigo="jg-09", nombre='Capo', servicios="Servicio,Instalado", imagen="images/capo9.jpg", categoria=Categoria.objects.get(idCategoria=1))
+    servicio.objects.create(codigo="jg-10", nombre='Parachoque', servicios="Servicio,Instalado", imagen="images/parachoque.jpg", categoria=Categoria.objects.get(idCategoria=3))
+    return redirect(servicio, action='ins', id = '-1')

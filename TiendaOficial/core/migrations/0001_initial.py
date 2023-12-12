@@ -20,11 +20,11 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Juego',
+            name='Servicio',
             fields=[
                 ('id', models.CharField(max_length=6, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=80, verbose_name='Nombre')),
-                ('plataforma', models.CharField(blank=True, max_length=80, null=True, verbose_name='Plataforma')),
+                ('servicios', models.CharField(blank=True, max_length=80, null=True, verbose_name='servicios')),
                 ('imagen', models.ImageField(default='sinfoto.jpg', upload_to='images/', verbose_name='Imagen')),
                 ('categoria', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='core.categoria')),
             ],

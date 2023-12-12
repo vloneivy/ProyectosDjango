@@ -11,11 +11,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RemoveField(
-            model_name='juego',
+            model_name='servicio',
             name='id',
         ),
         migrations.AddField(
-            model_name='juego',
+            model_name='servicio',
             name='codigo',
             field=models.CharField(default=0, max_length=6, primary_key=True, serialize=False, verbose_name='Codigo'),
             preserve_default=False,

@@ -11,12 +11,12 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombreCategoria
 
-# Create  para juego
+# Create  para servicio
 
-class Juego(models.Model):
+class servicio(models.Model):
     codigo = models.CharField(max_length=6, primary_key=True, verbose_name="Codigo")
     nombre = models.CharField(max_length=80, blank=False, null=False, verbose_name="Nombre")
-    plataforma = models.CharField(max_length=80, null=True, blank=True, verbose_name="Plataforma")
+    servicios = models.CharField(max_length=80, null=True, blank=True, verbose_name="Servicios")
     imagen = models.ImageField(upload_to="images/", default="sinfoto.jpg", null=False, blank=False, verbose_name="Imagen")
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
 

@@ -1,8 +1,8 @@
 from django import forms
 from django.forms import ModelForm, fields
-from .models import Juego
+from .models import servicio
 
-class JuegoForm(ModelForm):
+class servicioForm(ModelForm):
     class Meta:
-        model = Juego
-        fields = ['codigo', 'nombre', 'plataforma', 'imagen', 'categoria']
+        model = servicio
+        fields = ['codigo', 'nombre', 'servicios', 'imagen', 'categoria']
